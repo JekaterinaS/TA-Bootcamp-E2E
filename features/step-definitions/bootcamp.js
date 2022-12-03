@@ -1,6 +1,6 @@
 const {Given, When, Then} = require('@wdio/cucumber-framework');
 
-const browserDelay = 2000;
+const browserDelay = 0;
 const bannerAppearanceTimeout = 5000;
 
 Given('I am at the home page', async () => {
