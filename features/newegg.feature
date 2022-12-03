@@ -3,11 +3,7 @@ Feature: Bootcamp E2E
 
   Background:
     Given I am at the home page
-
-  @close_promo_banner
-  Scenario: Promo banner
-    When I close the promo banner
-    Then the promo banner should disappear
+    Given I've closed the promo banner if it appeared
 
   @search_bar_manipulations
   Scenario: Search bar

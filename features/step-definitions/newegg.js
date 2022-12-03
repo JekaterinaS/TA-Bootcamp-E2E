@@ -2,10 +2,9 @@ const {Given, When, Then} = require('@wdio/cucumber-framework');
 
 Given('I am at the home page', async () => {
     await browser.url(`https://www.newegg.com`);
-    await browser.pause(2000);
 });
 
-When('I close the promo banner', async () => {
+Given("I've closed the promo banner if it appeared", async () => {
     try {
         const modalElement = await $('#modal-Website');
 
@@ -16,17 +15,12 @@ When('I close the promo banner', async () => {
         await browser.pause(2000);
 
         await bannerCloseButton.click();
+
     } catch (error) {
         console.log('No modal element @ Promo Banner When');
     }
 });
 
-Then('the promo banner should disappear', async () => {
-    const modalElement = await $('#modal-Website');
-
-    await expect(modalElement).not.toBeExisting();
-
-});
 When('I enter the word {string} in the search bar and click the search', async (searchKey) => {
     const searchSiteInput = $('input[type="search"]');
     await searchSiteInput.click();
