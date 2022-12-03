@@ -1,5 +1,8 @@
 const {Given, When, Then} = require('@wdio/cucumber-framework');
 
+const browserDelay = 2000;
+const bannerAppearanceTimeout = 5000;
+
 Given('I am at the home page', async () => {
     await browser.url(`https://www.newegg.com`);
 });
@@ -8,11 +11,11 @@ Given("I've closed the promo banner if it appeared", async () => {
     try {
         const modalElement = await $('#modal-Website');
 
-        await modalElement.waitForExist({timeout: 5000});
+        await modalElement.waitForExist({timeout: bannerAppearanceTimeout});
 
         const bannerCloseButton = modalElement.$('.modal-dialog.modal-dialog-centered > div > button');
 
-        await browser.pause(2000);
+        await browser.pause(browserDelay);
 
         await bannerCloseButton.click();
 
@@ -26,7 +29,7 @@ When('I enter the word {string} in the search bar and click the search', async (
     await searchSiteInput.click();
 
     await browser.keys(searchKey);
-    await browser.pause(2000);
+    await browser.pause(browserDelay);
 
     const searchButton = $('.ico-search');
     await searchButton.click();
@@ -35,7 +38,7 @@ When('I enter the word {string} in the search bar and click the search', async (
 Then('Check that at least {int} item appears', async (searchResultsCount) => {
     const searchResults = $$('.item-cell');
 
-    await browser.pause(2000);
+    await browser.pause(browserDelay);
 
     await expect(searchResults).toBeElementsArrayOfSize({gte: searchResultsCount});
 });
