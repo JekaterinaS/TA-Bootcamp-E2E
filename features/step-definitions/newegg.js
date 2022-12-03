@@ -13,7 +13,7 @@ When('I close the promo banner', async () => {
 
         const bannerCloseButton = modalElement.$('.modal-dialog.modal-dialog-centered > div > button');
 
-        await browser.pause(5000);
+        await browser.pause(2000);
 
         await bannerCloseButton.click();
     } catch (error) {
@@ -32,7 +32,7 @@ When('I enter the word {string} in the search bar and click the search', async (
     await searchSiteInput.click();
 
     await browser.keys(searchKey);
-    await browser.pause(5000);
+    await browser.pause(2000);
 
     const searchButton = $('.ico-search');
     await searchButton.click();
@@ -41,7 +41,23 @@ When('I enter the word {string} in the search bar and click the search', async (
 Then('Check that at least {int} item appears', async (searchResultsCount) => {
     const searchResults = $$('.item-cell');
 
-    await browser.pause(5000);
+    await browser.pause(2000);
 
     await expect(searchResults).toBeElementsArrayOfSize({gte: searchResultsCount});
+});
+
+When('I open {string} tab', async (tabName) => {
+    const bestDealsTabLink = $(`a[title="${tabName}"] > span`);
+
+    await bestDealsTabLink.click();
+});
+
+Then('I click on the Internet shop logo', async () => {
+    const shopLogo = $('a.header2021-logo-img > img');
+
+    await shopLogo.click();
+});
+
+Then('I should see the main page', async () => {
+    expect(browser).toHaveUrl('https://www.newegg.com/');
 });
