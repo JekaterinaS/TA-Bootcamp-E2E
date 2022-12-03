@@ -17,6 +17,6 @@
   "scripts": {
     "wdio": "wdio run wdio.conf.js",
     "test": "yarn run wdio",
-    "newegg": "wdio run wdio.conf.js --spec newegg.feature"
+    "bootcamp": "wdio run wdio.conf.js --spec bootcamp.feature"
   }
 }
